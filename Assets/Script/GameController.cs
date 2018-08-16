@@ -7,21 +7,22 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 
     [SerializeField]
-    Text StageNoLabel;
+    Text stageNoLabel;
     [SerializeField]
     Canvas gameOverCanvas;
     [SerializeField]
     Canvas clearCanvas;
     [SerializeField]
-    string stageSelectScenename="StageSelect";
+    StageSelectManager stageSelectManager;
 
 
     
     // Use this for initialization
     void Start () {
+        stageSelectManager = GameObject.Find("StageSelectManager").GetComponent<StageSelectManager>();
+        stageNoLabel.GetComponent<Text>().text = SceneManager.GetActiveScene().name;
 
-		
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour {
 	}
     public void GameClear()
     {
+        stageSelectManager.SetCleared(SceneManager.GetActiveScene().name,true);
         clearCanvas.gameObject.SetActive(true);
     }
     public void GameOver()
@@ -41,7 +43,8 @@ public class GameController : MonoBehaviour {
     }
     public void GotoStageSelect()
     {
-        SceneManager.LoadScene(stageSelectScenename);
+        SceneManager.LoadScene(stageSelectManager.stageSelectSceneName);
+        //stageSelectManager.SetStageSelectButton();
     }
 
 

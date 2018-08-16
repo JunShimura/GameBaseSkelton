@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     TargetManager targetManager;
 
     int targetCount = 0;
+    int catchTargetCount = 0;
     private enum Step {
         ready,moving,stopped
     }
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour {
         if (step == Step.ready && Input.GetMouseButtonDown(0))
         {
             inputVector.x = force;
+            targetCount = targetManager.gameObject.transform.childCount;
+            catchTargetCount = 0;
             step = Step.moving;
         }
         transform.Translate(inputVector * force * Time.deltaTime);
@@ -46,13 +49,22 @@ public class PlayerController : MonoBehaviour {
         if (step==Step.moving && otherTag == "Target")
         {
             GameObject.Destroy(other.GetComponent<Rigidbody>());
-            targetCount++;
+            GameObject.Destroy(other.GetComponent<Collider>());
+            catchTargetCount++;
         }
         else if (otherTag == "Stopper")
         {
             step = Step.stopped;
             inputVector = Vector3.zero;
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            if (catchTargetCount == targetCount)
+            {
+                gameController.GameClear();
+            }
+            else
+            {
+                gameController.GameOver();
+            }
 
         }
     }

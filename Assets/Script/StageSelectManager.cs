@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 
 public class StageSelectManager : MonoBehaviour {
-    public const string stageSelectSceneName = "StageSelect";
+    public readonly string stageSelectSceneName = "StageSelect";
     public string currentStageName = null;
     [SerializeField]
     const string StageSelectButtonCanvasName = "StageSelectButtonCanvas";
+    [SerializeField]
+    GameObject StageSelectButtonCanvas;
     [SerializeField]
     GameObject StageSelectButtonPrefab;
 
@@ -30,13 +32,25 @@ public class StageSelectManager : MonoBehaviour {
         new Stage("Stage03", true)
     };
 
+
+    public static StageSelectManager Instance {
+        get; private set;
+    }
+
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         GameObject.DontDestroyOnLoad(gameObject);
+
     }
     private void Start()
     {
-        SetStageSelectButton();
+        //SetStageSelectButton();
     }
     public void SetStageSelectButton()
     {

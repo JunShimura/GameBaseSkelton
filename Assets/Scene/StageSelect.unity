@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: b44e86fe260e676499e9daadebd47b5a,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -423,15 +424,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStageName: 
+  StageSelectButtonCanvas: {fileID: 1785545024}
   StageSelectButtonPrefab: {fileID: 1486844637203018, guid: 3ca1ccedd79a5a747a953e83c8c1b73c,
     type: 2}
   stage:
   - stageName: Stage01
     cleared: 1
   - stageName: Stage02
-    cleared: 1
+    cleared: 0
   - stageName: Stage03
-    cleared: 1
+    cleared: 0
 --- !u!4 &1070881489
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +582,7 @@ GameObject:
   - component: {fileID: 1785545028}
   - component: {fileID: 1785545027}
   - component: {fileID: 1785545026}
+  - component: {fileID: 1785545030}
   m_Layer: 5
   m_Name: StageSelectButtonCanvas
   m_TagString: Untagged
@@ -685,3 +688,14 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1785545030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1785545024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6f138b58c1f724186f7c452e58fff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
