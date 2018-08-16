@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class StageSelectManager :MonoBehaviour  {
+public class StageSelectManager : MonoBehaviour {
     public const string stageSelectSceneName = "StageSelect";
     public string currentStageName = null;
     [SerializeField]
@@ -17,12 +17,12 @@ public class StageSelectManager :MonoBehaviour  {
     public class Stage {
         public string stageName;
         public bool cleared;
-        public Stage( string name, bool c)
+        public Stage(string name, bool c)
         {
             this.stageName = name;
             this.cleared = c;
         }
- 
+
     }
     public List<Stage> stage = new List<Stage> {
         new Stage("Stage01", true),
@@ -41,18 +41,11 @@ public class StageSelectManager :MonoBehaviour  {
     public void SetStageSelectButton()
     {
         GameObject buttonCanvas = GameObject.Find(StageSelectButtonCanvasName);
-        for(int i = 0; i < stage.Capacity; i++)
+        for (int i = 0; i < stage.Count; i++)
         {
             GameObject buttonObject;
-            if (buttonCanvas.transform.childCount < stage.Capacity)
-            {
-                buttonObject = Instantiate(StageSelectButtonPrefab);
-                buttonObject.transform.SetParent(buttonCanvas.transform);
-            }
-            else
-            {
-                buttonObject = buttonCanvas.transform.GetChild(i).gameObject;
-            }
+            buttonObject = Instantiate(StageSelectButtonPrefab);
+            buttonObject.transform.SetParent(buttonCanvas.transform);
             buttonObject.GetComponent<StageSelectButton>().Initialize(this, stage[i]);
         }
 
@@ -62,7 +55,7 @@ public class StageSelectManager :MonoBehaviour  {
         currentStageName = stage.stageName;
         SceneManager.LoadScene(stage.stageName);
     }
-    public void SetCleared(string stageName,bool cleared)
+    public void SetCleared(string stageName, bool cleared)
     {
         stage.Find(s => s.stageName == stageName).cleared = cleared;
     }
