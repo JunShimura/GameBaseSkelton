@@ -4,24 +4,57 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    Rigidbody rigidbody;
     [SerializeField]
     float force = 10.0f;
-    
+
+    [SerializeField]
+    GameController gameController;
+    [SerializeField]
+    TargetManager targetManager;
+
+    int targetCount = 0;
+    private enum Step {
+        ready,moving,stopped
+    }
+    private Step step = Step.ready;
+
+    private void Reset()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        targetManager = GameObject.Find("TargetManager").GetComponent<TargetManager>();
+    }
     // Use this for initialization
-	void Start () {
-        rigidbody = GetComponent<Rigidbody>();
-	}
+    void Start()
+    {
+        Reset();
+    }
 
     private Vector3 inputVector;
     // Update is called once per frame
-	void Update () {
-        inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-	}
-
-    private void FixedUpdate()
+    void Update()
     {
-        rigidbody.AddForce(inputVector*force, ForceMode.VelocityChange);
+        if (step == Step.ready && Input.GetMouseButtonDown(0))
+        {
+            inputVector.x = force;
+            step = Step.moving;
+        }
+        transform.Translate(inputVector * force * Time.deltaTime);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        string otherTag = other.gameObject.tag;
+        if (step==Step.moving && otherTag == "Target")
+        {
+            GameObject.Destroy(other.GetComponent<Rigidbody>());
+            targetCount++;
+        }
+        else if (otherTag == "Stopper")
+        {
+            step = Step.stopped;
+            inputVector = Vector3.zero;
+            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+
+        }
     }
 
 }

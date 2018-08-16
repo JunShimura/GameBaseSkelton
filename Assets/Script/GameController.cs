@@ -7,15 +7,19 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 
     [SerializeField]
-    Canvas gameOverCanbus;
+    Text StageNoLabel;
     [SerializeField]
-    Canvas clearCanbus;
+    Canvas gameOverCanvas;
+    [SerializeField]
+    Canvas clearCanvas;
     [SerializeField]
     string stageSelectScenename="StageSelect";
 
 
+    
     // Use this for initialization
     void Start () {
+
 		
 	}
 	
@@ -25,11 +29,11 @@ public class GameController : MonoBehaviour {
 	}
     public void GameClear()
     {
-        clearCanbus.gameObject.SetActive(true);
+        clearCanvas.gameObject.SetActive(true);
     }
     public void GameOver()
     {
-        gameOverCanbus.gameObject.SetActive(true);
+        gameOverCanvas.gameObject.SetActive(true);
     }
     public void GameRetry()
     {
