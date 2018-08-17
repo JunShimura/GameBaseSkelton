@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// StageSelectManager
+/// ステージ選択画面を制御する
+/// </summary>
 public class StageSelectManager : MonoBehaviour {
+    //StageSelectのScene名
     public readonly string stageSelectSceneName = "StageSelect";
     public string currentStageName = null;
     [SerializeField]
@@ -15,7 +19,7 @@ public class StageSelectManager : MonoBehaviour {
     [SerializeField]
     GameObject StageSelectButtonPrefab;
 
-    [System.SerializableAttribute]
+    [System.Serializable]
     public class Stage {
         public string stageName;
         public bool cleared;
