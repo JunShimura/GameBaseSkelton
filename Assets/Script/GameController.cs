@@ -13,13 +13,19 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     Canvas clearCanvas;
     [SerializeField]
-    StageSelectManager stageSelectManager;
+    StageSelectManager stageSelectManager=null;
 
 
     
     // Use this for initialization
     void Start () {
-        stageSelectManager = GameObject.Find("StageSelectManager").GetComponent<StageSelectManager>();
+        try {
+            stageSelectManager = GameObject.Find("StageSelectManager").GetComponent<StageSelectManager>();
+        }
+        catch (System.NullReferenceException ) {
+
+            Debug.Log("StageManager not found");
+        }
         stageNoLabel.GetComponent<Text>().text = SceneManager.GetActiveScene().name;
 
     }
@@ -30,7 +36,9 @@ public class GameController : MonoBehaviour {
 	}
     public void GameClear()
     {
-        stageSelectManager.SetCleared(SceneManager.GetActiveScene().name,true);
+        if (stageSelectManager != null) {
+            stageSelectManager.SetCleared(SceneManager.GetActiveScene().name, true);
+        }
         clearCanvas.gameObject.SetActive(true);
     }
     public void GameOver()
