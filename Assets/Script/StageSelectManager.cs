@@ -56,7 +56,7 @@ public class StageSelectManager : MonoBehaviour {
     public static  void StageManagerLoader()
     {
         try {
-            StageSelectManager stageSelectManager = GameObject.FindWithTag(StageSelectManager.stageSelectManagerTag).GetComponent<StageSelectManager>();
+            GameObject.FindWithTag(StageSelectManager.stageSelectManagerTag).GetComponent<StageSelectManager>();
         }
         catch (System.NullReferenceException) {
 
