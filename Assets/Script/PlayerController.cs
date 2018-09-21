@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     GameController gameController;
     [SerializeField]
-    TargetManager targetManager;
+    GameObject targetManager;
 
     int targetCount = 0;
     int catchTargetCount = 0;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     private void Reset()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        targetManager = GameObject.Find("TargetManager").GetComponent<TargetManager>();
+        targetManager = GameObject.Find("TargetManager");
     }
     // Use this for initialization
     void Start()
