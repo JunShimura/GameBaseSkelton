@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Target
   - Stopper
+  - StageSelectManager
   layers:
   - Default
   - TransparentFX

@@ -23,3 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Stage03.unity
     guid: 7368984a18cffd546bac5220838c2f7c
+  - enabled: 1
+    path: Assets/Scene/StageSelectManager.unity
+    guid: bc72b7bda4d284c478c0bfd4cdccf68d
+  m_configObjects: {}

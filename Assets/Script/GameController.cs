@@ -15,17 +15,14 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     StageSelectManager stageSelectManager=null;
 
-
-    
+    void Awake()
+    {
+        StageSelectManager.StageManagerLoader();
+    }
     // Use this for initialization
     void Start () {
-        try {
-            stageSelectManager = GameObject.Find("StageSelectManager").GetComponent<StageSelectManager>();
-        }
-        catch (System.NullReferenceException ) {
 
-            Debug.Log("StageManager not found");
-        }
+        stageSelectManager = StageSelectManager.GetStageSelectManager();
         stageNoLabel.GetComponent<Text>().text = SceneManager.GetActiveScene().name;
 
     }
@@ -51,8 +48,7 @@ public class GameController : MonoBehaviour {
     }
     public void GotoStageSelect()
     {
-        SceneManager.LoadScene(stageSelectManager.stageSelectSceneName);
-        //stageSelectManager.SetStageSelectButton();
+        SceneManager.LoadScene(StageSelectManager.stageSelectSceneName);
     }
 
 

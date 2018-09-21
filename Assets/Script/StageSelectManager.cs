@@ -10,11 +10,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StageSelectManager : MonoBehaviour {
     //StageSelectのScene名
-    public readonly string stageSelectSceneName = "StageSelect";
+    public static readonly string stageSelectSceneName = "StageSelect";
+    public static readonly string stageSelectManagerSceneName = "StageSelectManager";
+    public static readonly string stageSelectManagerTag = "StageSelectManager";
+
     public string currentStageName = null;
-    [SerializeField]
-    const string StageSelectButtonCanvasName = "StageSelectButtonCanvas";
-    [SerializeField]
     GameObject StageSelectButtonCanvas;
     [SerializeField]
     GameObject StageSelectButtonPrefab;
@@ -52,23 +52,33 @@ public class StageSelectManager : MonoBehaviour {
         GameObject.DontDestroyOnLoad(gameObject);
 
     }
-    private void Start()
-    {
-        //SetStageSelectButton();
-    }
-    public void SetStageSelectButton()
-    {
-        GameObject buttonCanvas = GameObject.Find(StageSelectButtonCanvasName);
-        for (int i = 0; i < stage.Count; i++)
-        {
-            GameObject buttonObject;
-            buttonObject = Instantiate(StageSelectButtonPrefab);
-            buttonObject.transform.SetParent(buttonCanvas.transform);
-            buttonObject.GetComponent<StageSelectButton>().Initialize(this, stage[i]);
-        }
 
+    public static  void StageManagerLoader()
+    {
+        try {
+            StageSelectManager stageSelectManager = GameObject.FindWithTag(StageSelectManager.stageSelectManagerTag).GetComponent<StageSelectManager>();
+        }
+        catch (System.NullReferenceException) {
+
+            SceneManager.LoadScene(StageSelectManager.stageSelectManagerSceneName, LoadSceneMode.Additive);
+
+        }
     }
-    public void StageSelect(Stage stage)
+    public static StageSelectManager GetStageSelectManager()
+    {
+        StageSelectManager stageSelectManager;
+        try{
+            stageSelectManager = GameObject.FindGameObjectWithTag(StageSelectManager.stageSelectManagerTag)
+                .GetComponent<StageSelectManager>();
+                
+        }
+        catch (System.NullReferenceException) {
+            return null;
+        }
+        return stageSelectManager;
+    }
+
+      public void StageSelect(Stage stage)
     {
         currentStageName = stage.stageName;
         SceneManager.LoadScene(stage.stageName);
