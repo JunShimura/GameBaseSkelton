@@ -926,7 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   gameController: {fileID: 1861074180}
-  targetManager: {fileID: 0}
+  targetManager: {fileID: 1753097986}
 --- !u!1001 &1590618372
 Prefab:
   m_ObjectHideFlags: 0
