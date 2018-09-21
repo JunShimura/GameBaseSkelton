@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// StageSelect
+/// StageSelectのSceneで制御する
+/// </summary>
 public class StageSelect : MonoBehaviour
 {
 

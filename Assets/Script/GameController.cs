@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// GameControler
+/// ゲーム本体のレベルの制御
+/// </summary>
 public class GameController : MonoBehaviour {
 
     [SerializeField]

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// StageSelectButton
+/// Stageを選ぶボタンの処理
+/// </summary>
 public class StageSelectButton : MonoBehaviour {
 
     [SerializeField]
@@ -12,6 +15,7 @@ public class StageSelectButton : MonoBehaviour {
     Text clearedLabel;
     public StageSelectManager stageSelectManager;
     public StageSelectManager.Stage stage;
+
 
     private string sceneName = null;
 

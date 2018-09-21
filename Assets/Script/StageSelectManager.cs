@@ -50,7 +50,6 @@ public class StageSelectManager : MonoBehaviour {
         }
         Instance = this;
         GameObject.DontDestroyOnLoad(gameObject);
-
     }
 
     public static  void StageManagerLoader()
